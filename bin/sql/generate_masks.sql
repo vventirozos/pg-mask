@@ -70,6 +70,7 @@ left join pg_description msk on msk.objoid  =tab.oid
                             and msk.objsubid=col.attnum
 where tab.relkind       ='r'::char
   and tab.relpersistence='p'::char
+  and nam.nspname not in ('information_schema','pg_catalog')
   and pg_get_userbyid(tab.relowner)=user
   and col.attnum>0
   and not col.attisdropped
